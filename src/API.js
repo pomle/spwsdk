@@ -1,4 +1,4 @@
-import { PlaylistAPI } from './Playlist';
-import { PlaybackAPI } from './Playback';
+import { PlaylistAPI } from './Playlist/index.js';
+import { PlaybackAPI } from './Playback/index.js';
 
 export { PlaybackAPI, PlaylistAPI };

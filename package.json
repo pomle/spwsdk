@@ -1,0 +1,13 @@
+{
+  "name": "@pomle/spotify-web-sdk",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "author": "Pontus Alexander <pontus.alexander@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "dependencies": {
+    "rollup": "^0.53.3"
+  }
+}

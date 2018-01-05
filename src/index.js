@@ -1,5 +1,6 @@
-const CLIENT_ID = 'a7cf3dcdfbd64bd5ac8d960caabbc890';
-const CALLBACK_URL = 'http://localhost:3000/';
+import '../vendor/spotify-player.js';
+
+import {PlaybackAPI, PlaylistAPI} from './API.js';
 
 const playerPromise = new Promise(resolve => {
   window.onSpotifyWebPlaybackSDKReady = () => {
@@ -7,6 +8,11 @@ const playerPromise = new Promise(resolve => {
     resolve(window.Spotify);
   };
 });
+
+export {
+  PlaybackAPI,
+  PlaylistAPI,
+};
 
 export async function getSpotify() {
   return playerPromise;
@@ -24,12 +30,12 @@ export async function createPlayer(token) {
   return player;
 }
 
-export function createAuthorizationURL() {
+export function createAuthorizationURL(clientId, callbackURL) {
   return (
     'https://accounts.spotify.com/authorize?' +
     [
-      ['client_id', CLIENT_ID],
-      ['redirect_uri', CALLBACK_URL],
+      ['client_id', clientId],
+      ['redirect_uri', callbackURL],
       ['response_type', 'token'],
       [
         'scope',

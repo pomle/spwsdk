@@ -5,9 +5,13 @@
   "author": "Pontus Alexander <pontus.alexander@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "devDependencies": {
+    "babel-jest": "^22.0.4",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.0.4",
     "rollup": "^0.53.3"
   }
 }

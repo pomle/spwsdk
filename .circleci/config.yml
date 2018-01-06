@@ -29,6 +29,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run: yarn test
       - run: yarn run build
       - run: npm version 0.0.0-$(git log --format="%H" -n 1 | cut -b -7)
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc

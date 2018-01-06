@@ -45,7 +45,15 @@ export class CoreAPI {
     });
   }
 
-  url(path) {
-    return this.base + path;
+  url(path, params = null) {
+    let url = this.base;
+
+    url += path;
+
+    if (params) {
+      url += '?' + params.map(pair => pair.map(encodeURIComponent).join('=')).join('&');
+    }
+
+    return url;
   }
 }

@@ -31,4 +31,20 @@ export class PlaybackAPI extends CoreAPI {
       'PUT'
     );
   }
+
+  resume() {
+    return this.request(this.url('v1/me/player/play'), null, 'PUT');
+  }
+
+  pause() {
+    return this.request(this.url('v1/me/player/pause'), null, 'PUT');
+  }
+
+  next() {
+    return this.request(this.url('v1/me/player/next'), null, 'POST');
+  }
+
+  prev() {
+    return this.request(this.url('v1/me/player/previous'), null, 'POST');
+  }
 }

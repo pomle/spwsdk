@@ -1,6 +1,12 @@
 import '../vendor/spotify-player.js';
 
-import {PlaybackAPI, PlaylistAPI} from './API.js';
+import {PlaybackAPI, PlaylistAPI, SearchAPI} from './API.js';
+
+export {
+  PlaybackAPI,
+  PlaylistAPI,
+  SearchAPI,
+};
 
 const playerPromise = new Promise(resolve => {
   window.onSpotifyWebPlaybackSDKReady = () => {
@@ -8,11 +14,6 @@ const playerPromise = new Promise(resolve => {
     resolve(window.Spotify);
   };
 });
-
-export {
-  PlaybackAPI,
-  PlaylistAPI,
-};
 
 export async function getSpotify() {
   return playerPromise;

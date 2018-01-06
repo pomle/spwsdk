@@ -19,15 +19,14 @@ export async function getSpotify() {
   return playerPromise;
 }
 
-export async function createPlayer(token) {
+export async function createPlayer(token, options) {
   const Spotify = await getSpotify();
-  const player = new Spotify.Player({
-    name: 'Cordless',
+  const player = new Spotify.Player(Object.assign({}, options, {
     getOAuthToken: callback => {
       callback(token);
     },
-    volume: 1,
-  });
+  }));
+
   return player;
 }
 

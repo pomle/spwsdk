@@ -1,6 +1,6 @@
 {
   "name": "@pomle/spotify-web-sdk",
-  "version": "0.0.0",
+  "version": "0.0.0-3cfd179",
   "main": "dist/index.js",
   "author": "Pontus Alexander <pontus.alexander@gmail.com>",
   "license": "MIT",

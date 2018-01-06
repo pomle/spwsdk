@@ -1,19 +1,17 @@
 import { CoreAPI } from '../CoreAPI.js';
 
 export class PlaybackAPI extends CoreAPI {
-  url(device_id) {
+  urlWithDevice(path, device_id) {
     if (!device_id) {
       throw new TypeError('Device id argument missing');
     }
 
-    return super.url(`v1/me/player/play?device_id=${device_id}`);
+    return this.url(`${path}?device_id=${device_id}`);
   }
 
   playContext(contextURI, device_id) {
-
-
     return this.request(
-      this.url(device_id),
+      this.urlWithDevice('v1/me/player/play', device_id),
       {
         context_uri: contextURI,
       },
@@ -23,7 +21,7 @@ export class PlaybackAPI extends CoreAPI {
 
   playTracks(trackURIs, trackURI, device_id) {
     return this.request(
-      this.url(device_id),
+      this.urlWithDevice('v1/me/player/play', device_id),
       {
         uris: trackURIs,
         offset: {

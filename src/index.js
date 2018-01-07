@@ -21,11 +21,9 @@ export async function getSpotify() {
 
 export async function createPlayer(token, options) {
   const Spotify = await getSpotify();
-  const player = new Spotify.Player(Object.assign({}, options, {
-    getOAuthToken: callback => {
-      callback(token);
-    },
-  }));
+  const player = new Spotify.Player(Object.assign({
+    getOAuthToken: callback => callback(token),
+  }, options));
 
   return player;
 }

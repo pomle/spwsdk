@@ -47,4 +47,8 @@ export class PlaybackAPI extends CoreAPI {
   prev() {
     return this.request(this.url('v1/me/player/previous'), null, 'POST');
   }
+
+  seek(ms) {
+    return this.request(this.url('v1/me/player/seek', [['position_ms', ms]]), null, 'PUT');
+  }
 }

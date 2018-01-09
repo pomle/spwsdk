@@ -1,6 +1,11 @@
 import { CoreAPI } from '../CoreAPI.js';
 
 export class PlaybackAPI extends CoreAPI {
+
+  setDevice(deviceId) {
+    this.deviceId = deviceId;
+  }
+
   urlWithDevice(path, device_id) {
     if (!device_id) {
       throw new TypeError('Device id argument missing');

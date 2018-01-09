@@ -14,6 +14,19 @@ export class PlaybackAPI extends CoreAPI {
     return this.url(`${path}?device_id=${device_id}`);
   }
 
+  playAlbum(albumURI, trackURI) {
+    return this.request(
+      this.urlWithDevice('v1/me/player/play', this.deviceId),
+      {
+        context_uri: albumURI,
+        offset: {
+          [trackURI ? 'uri' : 'position']: trackURI || 1,
+        }
+      },
+      'PUT'
+    );
+  }
+
   playContext(contextURI, device_id) {
     return this.request(
       this.urlWithDevice('v1/me/player/play', device_id),

@@ -1,9 +1,10 @@
 import 'babel-polyfill';
 import '../vendor/spotify-player.js';
 
-import {PlaybackAPI, PlaylistAPI, SearchAPI} from './API.js';
+import {AlbumAPI, PlaybackAPI, PlaylistAPI, SearchAPI} from './API.js';
 
 export {
+  AlbumAPI,
   PlaybackAPI,
   PlaylistAPI,
   SearchAPI,

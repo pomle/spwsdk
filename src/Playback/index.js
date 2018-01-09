@@ -27,9 +27,9 @@ export class PlaybackAPI extends CoreAPI {
     );
   }
 
-  playContext(contextURI, device_id) {
+  playContext(contextURI) {
     return this.request(
-      this.urlWithDevice('v1/me/player/play', device_id),
+      this.urlWithDevice('v1/me/player/play', this.deviceId),
       {
         context_uri: contextURI,
       },
@@ -37,9 +37,9 @@ export class PlaybackAPI extends CoreAPI {
     );
   }
 
-  playTracks(trackURIs, trackURI, device_id) {
+  playTracks(trackURIs, trackURI) {
     return this.request(
-      this.urlWithDevice('v1/me/player/play', device_id),
+      this.urlWithDevice('v1/me/player/play', this.deviceId),
       {
         uris: trackURIs,
         offset: {

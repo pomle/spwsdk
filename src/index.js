@@ -1,13 +1,14 @@
 import 'babel-polyfill';
 import '../vendor/spotify-player.js';
 
-import {AlbumAPI, PlaybackAPI, PlaylistAPI, SearchAPI} from './API.js';
+import {AlbumAPI, PlaybackAPI, PlaylistAPI, SearchAPI, TrackAPI} from './API.js';
 
 export {
   AlbumAPI,
   PlaybackAPI,
   PlaylistAPI,
   SearchAPI,
+  TrackAPI,
 };
 
 const playerPromise = new Promise(resolve => {

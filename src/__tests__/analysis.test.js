@@ -1,11 +1,11 @@
-import {analyzer} from '../analysis.js';
+import {AnalysisResolver, AnalysisStream} from '../analysis.js';
 import analysisData from './fixtures/analysis.json';
 
-describe('Analyzer', () => {
-    const analyze = analyzer(analysisData);
+describe('AnalysisResolver', () => {
+    const analyzer = new AnalysisResolver(analysisData);
 
     it('contains bar', () => {
-        const slice = analyze.resolve(45.23);
+        const slice = analyzer.resolve(45.23);
         expect(slice.bar).toEqual({
             "confidence": 0.449,
             "duration": 2.08653,
@@ -13,8 +13,17 @@ describe('Analyzer', () => {
         });
     });
 
+    it.skip('contains beat', () => {
+        const slice = analyzer.resolve(45.23);
+        expect(slice.beat).toEqual({
+            "confidence": 0.449,
+            "duration": 2.08653,
+            "start": 44.15467,
+        });
+    });
+
     it('contains segment', () => {
-        const slice = analyze.resolve(65.23);
+        const slice = analyzer.resolve(65.23);
         expect(slice.segment).toEqual({
             "confidence": 0.905,
             "duration": 0.26707,
@@ -54,7 +63,7 @@ describe('Analyzer', () => {
     });
 
     it('contains section', () => {
-        const slice = analyze.resolve(45.23);
+        const slice = analyzer.resolve(45.23);
         expect(slice.section).toEqual({
             "confidence": 0.743,
             "duration": 34.4244,
@@ -72,13 +81,35 @@ describe('Analyzer', () => {
     });
 
     it('resolves data given a time correctly', () => {
-        expect(analyze.resolve(12.4).bar.start).toEqual(11.42483);
-        expect(analyze.resolve(6.97092).bar.start).toEqual(6.97092);
+        expect(analyzer.resolve(12.4).bar.start).toEqual(11.42483);
+        expect(analyzer.resolve(6.97092).bar.start).toEqual(6.97092);
     });
 
     it('resolves undefined if out of scope', () => {
-        expect(analyze.resolve(500)).toEqual({
+        expect(analyzer.resolve(500)).toEqual({
             bar: undefined
         });
+    });
+});
+
+
+describe('AnalysisStream', () => {
+    it('can be listened to', () => {
+      const stream = new AnalysisStream();
+      stream.on('data', () => {});
+    });
+
+    it('starts if run set to true', () => {
+        const stream = new AnalysisStream();
+        stream.start = jest.fn();
+        stream.run(true);
+        expect(stream.start.mock.calls.length).toBe(1);
+    });
+
+    it('stops if run set to false', () => {
+        const stream = new AnalysisStream();
+        stream.stop = jest.fn();
+        stream.run(false);
+        expect(stream.stop.mock.calls.length).toBe(1);
     });
 });

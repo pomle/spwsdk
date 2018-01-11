@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import '../vendor/spotify-player.js';
 
 import {AlbumAPI, PlaybackAPI, PlaylistAPI, SearchAPI, TrackAPI} from './API.js';
+import * as analysis from './analysis.js';
 
 export {
   AlbumAPI,
@@ -9,6 +10,7 @@ export {
   PlaylistAPI,
   SearchAPI,
   TrackAPI,
+  analysis,
 };
 
 const playerPromise = new Promise(resolve => {

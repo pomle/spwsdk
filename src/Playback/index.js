@@ -1,5 +1,17 @@
 import { CoreAPI } from '../CoreAPI.js';
 
+function playlistURI(userId, playlistId) {
+  return `spotify:user:${userId}:playlist:${playlistId}`;
+}
+
+function albumURI(albumId) {
+  return `spotify:album:${albumId}`;
+}
+
+function trackURI(trackId) {
+  return `spotify:track:${trackId}`;
+}
+
 export class PlaybackAPI extends CoreAPI {
 
   setDevice(deviceId) {
@@ -14,8 +26,10 @@ export class PlaybackAPI extends CoreAPI {
     return this.url(`${path}?device_id=${device_id}`);
   }
 
-  playAlbum(albumURI, startAtTrackURI) {
-    return this.playContext(albumURI, startAtTrackURI);
+  playAlbum(albumId, startTrackId) {
+    return this.playContext(
+      albumURI(albumId),
+      startTrackId && trackURI(startTrackId));
   }
 
   playContext(contextURI, offsetURI) {
@@ -31,17 +45,19 @@ export class PlaybackAPI extends CoreAPI {
     );
   }
 
-  playPlaylist(playlistURI, startAtTrackURI) {
-    return this.playContext(playlistURI, startAtTrackURI);
+  playPlaylist(userId, playlistId, startTrackId) {
+    return this.playContext(
+      playlistURI(userId, playlistId),
+      startTrackId && trackURI(startTrackId));
   }
 
-  playTracks(trackURIs, trackURI) {
+  playTracks(trackIds, startTrackId) {
     return this.request(
       this.urlWithDevice('v1/me/player/play', this.deviceId),
       {
-        uris: trackURIs,
+        uris: trackIds.map(trackURI),
         offset: {
-          uri: trackURI,
+          uri: trackURI(startTrackId || trackIds[0]),
         },
       },
       'PUT'

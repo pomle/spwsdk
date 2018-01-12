@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import '../vendor/spotify-player.js';
 
 import {AlbumAPI, PlaybackAPI, PlaylistAPI, SearchAPI, TrackAPI} from './API.js';
@@ -20,17 +19,19 @@ const playerPromise = new Promise(resolve => {
   };
 });
 
-export async function getSpotify() {
+export function getSpotify() {
   return playerPromise;
 }
 
-export async function createPlayer(token, options) {
-  const Spotify = await getSpotify();
-  const player = new Spotify.Player(Object.assign({
-    getOAuthToken: callback => callback(token),
-  }, options));
+export function createPlayer(token, options) {
+  return getSpotify()
+  .then(Spotify => {
+    const player = new Spotify.Player(Object.assign({
+      getOAuthToken: callback => callback(token),
+    }, options));
 
-  return player;
+    return player;
+  });
 }
 
 export function createAuthorizationURL(clientId, callbackURL) {

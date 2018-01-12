@@ -4,19 +4,21 @@ export class CoreAPI {
     this.token = token;
   }
 
-  async consume(request, callback) {
-    do {
-      const result = await request;
-      request = null;
+  consume(request, callback) {
+    const handleRequest = (request) => {
+      request
+      .then(result => {
+        if (result.items) {
+          callback(result.items);
+        }
 
-      if (result.items) {
-        callback(result.items);
-      }
+        if (result.next) {
+          handleRequest(this.request(result.next));
+        }
+      });
+    }
 
-      if (result.next) {
-        request = this.request(result.next);
-      }
-    } while (request);
+    handleRequest(request);
   }
 
   request(url, body = null, method = 'GET') {

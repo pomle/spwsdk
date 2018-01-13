@@ -1,5 +1,3 @@
-import '../vendor/spotify-player.js';
-
 import {AlbumAPI, PlaybackAPI, PlaylistAPI, SearchAPI, TrackAPI} from './API.js';
 import * as analysis from './analysis.js';
 

@@ -1,12 +1,14 @@
-import {AlbumAPI, PlaybackAPI, PlaylistAPI, SearchAPI, TrackAPI} from './API.js';
+import {AlbumAPI, ArtistAPI, PlaybackAPI, PlaylistAPI, SearchAPI, TrackAPI, UserAPI} from './API.js';
 import * as analysis from './analysis.js';
 
 export {
   AlbumAPI,
+  ArtistAPI,
   PlaybackAPI,
   PlaylistAPI,
   SearchAPI,
   TrackAPI,
+  UserAPI,
   analysis,
 };
 

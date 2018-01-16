@@ -1,3 +1,15 @@
+export function playlistURI(userId, playlistId) {
+  return `spotify:user:${userId}:playlist:${playlistId}`;
+}
+
+export function albumURI(albumId) {
+  return `spotify:album:${albumId}`;
+}
+
+export function trackURI(trackId) {
+  return `spotify:track:${trackId}`;
+}
+
 export class CoreAPI {
   constructor(token) {
     this.base = 'https://api.spotify.com/';

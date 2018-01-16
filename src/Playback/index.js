@@ -1,16 +1,4 @@
-import { CoreAPI } from '../CoreAPI.js';
-
-function playlistURI(userId, playlistId) {
-  return `spotify:user:${userId}:playlist:${playlistId}`;
-}
-
-function albumURI(albumId) {
-  return `spotify:album:${albumId}`;
-}
-
-function trackURI(trackId) {
-  return `spotify:track:${trackId}`;
-}
+import { CoreAPI, albumURI, playlistURI, trackURI } from '../CoreAPI.js';
 
 export class PlaybackAPI extends CoreAPI {
 

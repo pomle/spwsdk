@@ -1,6 +1,14 @@
-import {CoreAPI} from '../CoreAPI.js';
+import {CoreAPI, encode} from '../CoreAPI.js';
 
 describe('CoreAPI', () => {
+    describe('escape()', () => {
+        it('url encodes template string parts', () => {
+            const name = 'Mr. Dooble-Dingus & C:o';
+            const url = encode`/user/${name}/profile`;
+            expect(url).toBe('/user/Mr.%20Dooble-Dingus%20%26%20C%3Ao/profile');
+        });
+    });
+
     describe('#url()', () => {
         it('concatenates input with base URL', () => {
             const api = new CoreAPI();

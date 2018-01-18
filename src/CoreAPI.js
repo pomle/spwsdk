@@ -10,6 +10,14 @@ export function trackURI(trackId) {
   return `spotify:track:${trackId}`;
 }
 
+export function encode(parts, ...values) {
+    return values
+    .map(encodeURIComponent)
+    .reduce((string, value, index) => {
+        return string + value + parts[index + 1];
+    }, parts[0]);
+}
+
 export class CoreAPI {
   constructor(token) {
     this.base = 'https://api.spotify.com/';

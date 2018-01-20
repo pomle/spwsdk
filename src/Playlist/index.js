@@ -21,9 +21,9 @@ export class PlaylistAPI extends CoreAPI {
     return this.request(this.url(`v1/${userId}/playlists`));
   }
 
-  getPlaylist(userId, playlistId) {
+  getPlaylist(userId, playlistId, params = null) {
     return this.request(
-      this.url(`v1/users/${userId}/playlists/${playlistId}`)
+      this.url(`v1/users/${userId}/playlists/${playlistId}`, params),
     );
   }
 

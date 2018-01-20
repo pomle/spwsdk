@@ -1,4 +1,5 @@
-import { CoreAPI, albumURI, playlistURI, trackURI } from './Core.js';
+import { albumURI, playlistURI, trackURI } from '../uri.js';
+import { CoreAPI } from './Core.js';
 
 export class PlaybackAPI extends CoreAPI {
 

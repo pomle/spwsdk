@@ -61,15 +61,33 @@ describe('PlaylistAPI', () => {
     });
 
     describe('#getPlaylist()', () => {
-        it('queries for a given playlist', () => {
+        it('queries playlist endpoint', () => {
             const api = new PlaylistAPI();
             api.request = jest.fn().mockReturnValue(FAKE_RESULT);
-            expect(api.getPlaylist('pomle', '29851vj901jf2ck')).toBe(FAKE_RESULT);
+            expect(api.getPlaylist('pomle', '8a0gynawa9g8wa')).toBe(FAKE_RESULT);
             expect(api.request.mock.calls.length).toBe(1);
             expect(api.request).toBeCalledWith(
-                'https://api.spotify.com/v1/users/pomle/playlists/29851vj901jf2ck');
+                'https://api.spotify.com/v1/users/pomle/playlists/8a0gynawa9g8wa');
         });
-    });
+
+        it('supports market', () => {
+            const api = new PlaylistAPI();
+            api.request = jest.fn().mockReturnValue(FAKE_RESULT);
+            expect(api.getPlaylist('pomle', '8a0gynawa9g8wa', {market: 'es'})).toBe(FAKE_RESULT);
+            expect(api.request.mock.calls.length).toBe(1);
+            expect(api.request).toBeCalledWith(
+                'https://api.spotify.com/v1/users/pomle/playlists/8a0gynawa9g8wa?market=es');
+        });
+
+        it('supports fields', () => {
+            const api = new PlaylistAPI();
+            api.request = jest.fn().mockReturnValue(FAKE_RESULT);
+            expect(api.getPlaylist('pomle', '8a0gynawa9g8wa', {fields: '(!tracks)'})).toBe(FAKE_RESULT);
+            expect(api.request.mock.calls.length).toBe(1);
+            expect(api.request).toBeCalledWith(
+                'https://api.spotify.com/v1/users/pomle/playlists/8a0gynawa9g8wa?fields=(!tracks)');
+        });
+    })
 
     describe('#getPlaylistTracks()', () => {
         it('queries tracks for a given playlist', () => {

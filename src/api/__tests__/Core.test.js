@@ -1,4 +1,4 @@
-import {CoreAPI, encode} from '../CoreAPI.js';
+import {CoreAPI, encode} from '../Core.js';
 
 describe('CoreAPI', () => {
     describe('escape()', () => {

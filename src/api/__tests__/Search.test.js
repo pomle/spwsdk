@@ -1,4 +1,4 @@
-import {SearchAPI} from '../';
+import {SearchAPI} from '../Search.js';
 
 describe('SearchAPI', () => {
     describe('#search()', () => {

@@ -1,4 +1,4 @@
-import { CoreAPI } from '../CoreAPI.js';
+import { CoreAPI } from './Core.js';
 
 export class AlbumAPI extends CoreAPI {
   getAlbum(albumId) {

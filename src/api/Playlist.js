@@ -1,4 +1,4 @@
-import { CoreAPI, trackURI } from '../CoreAPI.js';
+import { CoreAPI, trackURI } from './Core.js';
 
 export class PlaylistAPI extends CoreAPI {
   addTracks(userId, playlistId, trackIds, position = null) {

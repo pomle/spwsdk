@@ -1,4 +1,4 @@
-import {PlaybackAPI} from '..';
+import {PlaybackAPI} from '../Playback.js';
 
 describe('Playback API', () => {
   let playbackAPI;

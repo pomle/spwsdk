@@ -1,4 +1,4 @@
-import {PlaylistAPI} from '../';
+import {PlaylistAPI} from '../Playlist.js';
 
 describe('PlaylistAPI', () => {
     const FAKE_RESULT = Symbol();

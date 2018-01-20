@@ -1,4 +1,4 @@
-import { CoreAPI } from '../CoreAPI.js';
+import { CoreAPI } from './Core.js';
 
 export class UserAPI extends CoreAPI {
   getMe() {

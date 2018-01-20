@@ -24,7 +24,7 @@ export class CoreAPI {
     this.token = token;
   }
 
-  consume(request, callback) {
+  consume(request) {
     const handleRequest = (request) => {
       request
       .then(result => {

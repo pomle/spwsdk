@@ -15,14 +15,21 @@ describe('CoreAPI', () => {
             expect(api.url('my/test')).toBe('https://api.spotify.com/my/test');
         });
 
-        it('supports query params', () => {
+        it('supports query params from array', () => {
             const api = new CoreAPI();
             const params = [
                 ['name', 'john'],
                 ['with space', 'spe&ci?al'],
             ];
             expect(api.url('my/test', params))
-                .toBe('https://api.spotify.com/my/test?name=john&with%20space=spe%26ci%3Fal');
+                .toEqual('https://api.spotify.com/my/test?name=john&with%20space=spe%26ci%3Fal');
+        });
+
+        it('supports query params from object', () => {
+            const api = new CoreAPI();
+            const params = {name: 'john', 'with space': 'spe&ci?al'};
+            expect(api.url('my/test', params))
+                .toEqual('https://api.spotify.com/my/test?name=john&with%20space=spe%26ci%3Fal');
         });
     })
 });

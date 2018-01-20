@@ -73,6 +73,9 @@ export class CoreAPI {
     url += path;
 
     if (params) {
+      if (!Array.isArray(params)) {
+        params = Object.keys(params).map(key => [key, params[key]]);
+      }
       url += '?' + params.map(pair => pair.map(encodeURIComponent).join('=')).join('&');
     }
 

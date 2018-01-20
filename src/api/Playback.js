@@ -27,7 +27,7 @@ export class PlaybackAPI extends CoreAPI {
       {
         context_uri: contextURI,
         offset: {
-          [offsetURI ? 'uri' : 'position']: offsetURI || 1,
+          [offsetURI ? 'uri' : 'position']: offsetURI || 0,
         }
       },
       'PUT'

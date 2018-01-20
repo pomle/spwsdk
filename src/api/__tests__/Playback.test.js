@@ -14,7 +14,7 @@ describe('Playback API', () => {
       playbackAPI.playContext('spotify:album:k0c2385hj239fj0');
       expect(playbackAPI.request).toBeCalledWith(
         'https://api.spotify.com/v1/me/player/play?device_id=2839nm5yv20n35238y20357vh2',
-        {"context_uri": "spotify:album:k0c2385hj239fj0", "offset": {"position": 1}},
+        {"context_uri": "spotify:album:k0c2385hj239fj0", "offset": {"position": 0}},
         'PUT'
       );
     });

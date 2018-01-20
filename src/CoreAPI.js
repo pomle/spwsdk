@@ -41,6 +41,39 @@ export class CoreAPI {
     handleRequest(request);
   }
 
+  consumer(request) {
+    let onDataListener;
+    let onDoneListener;
+
+    const handleRequest = (request) => {
+      request
+      .then(result => {
+        if (result) {
+          onDataListener(result);
+        }
+
+        if (result.next) {
+          handleRequest(this.request(result.next));
+        } else {
+          if (onDoneListener) {
+            onDoneListener();
+          }
+        }
+      });
+    }
+
+    function onData(fn) {
+      onDataListener = fn;
+      handleRequest(request);
+    }
+
+    function onDone(fn) {
+      onDoneListener = fn;
+    }
+
+    return {onData, onDone};
+  }
+
   request(url, body = null, method = 'GET') {
     const headers = new Headers({
       'Content-Type': 'application/json',

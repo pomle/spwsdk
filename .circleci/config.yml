@@ -10,6 +10,12 @@ jobs:
     docker:
       - image: circleci/node:8
 
+    environment:
+      GIT_AUTHOR_NAME: CircleCI
+      GIT_COMMITTER_NAME: CircleCI
+      GIT_AUTHOR_EMAIL: no-reply@circleci.com
+      GIT_COMMITTER_EMAIL: no-reply@circleci.com
+
     working_directory: ~/repo
 
     steps:
@@ -31,6 +37,6 @@ jobs:
 
       - run: yarn test
       - run: yarn run build
-      - run: npm version 0.0.0-$(git log --format="%H" -n 1 | cut -b -7)
+      - run: npm version 0.0.0-${CIRCLE_BUILD_NUM}
       - run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
       - run: npm publish --access public

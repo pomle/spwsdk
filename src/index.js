@@ -19,9 +19,15 @@ export {
   analysis,
 };
 
+const waitFnName = 'onSpotifyWebPlaybackSDKReady';
+
 const playerPromise = new Promise(resolve => {
-  window.onSpotifyWebPlaybackSDKReady = () => {
-    console.log('onSpotifyWebPlaybackSDKReady');
+  if (window[waitFnName]) {
+    throw new Error(`${waitFnName} already defined`);
+  }
+
+  window[waitFnName] = () => {
+    console.log(`${waitFnName} called`);
     resolve(window.Spotify);
   };
 });

@@ -70,4 +70,28 @@ describe('Playback API', () => {
       );
     });
   });
+
+  describe('#shuffle', () => {
+    describe('when set to true', () => {
+      it('sends a PUT request with a true param', () => {
+        playbackAPI.shuffle(true);
+        expect(playbackAPI.request).toBeCalledWith(
+          'https://api.spotify.com/v1/me/player/shuffle?state=true',
+          null,
+          'PUT'
+        );
+      });
+    });
+
+    describe('when set to false', () => {
+      it('sends a PUT request with a false param', () => {
+        playbackAPI.shuffle(false);
+        expect(playbackAPI.request).toBeCalledWith(
+          'https://api.spotify.com/v1/me/player/shuffle?state=false',
+          null,
+          'PUT'
+        );
+      });
+    });
+  });
 });

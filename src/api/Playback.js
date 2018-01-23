@@ -72,4 +72,8 @@ export class PlaybackAPI extends CoreAPI {
   seek(ms) {
     return this.request(this.url('v1/me/player/seek', [['position_ms', ms]]), null, 'PUT');
   }
+
+  shuffle(state) {
+    return this.request(this.url('v1/me/player/shuffle', [['state', state]]), null, 'PUT');
+  }
 }

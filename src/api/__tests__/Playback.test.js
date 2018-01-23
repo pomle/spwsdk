@@ -1,4 +1,4 @@
-import {PlaybackAPI} from '../Playback.js';
+import {PlaybackAPI, Repeat} from '../Playback.js';
 
 describe('Playback API', () => {
   let playbackAPI;
@@ -88,6 +88,41 @@ describe('Playback API', () => {
         playbackAPI.shuffle(false);
         expect(playbackAPI.request).toBeCalledWith(
           'https://api.spotify.com/v1/me/player/shuffle?state=false',
+          null,
+          'PUT'
+        );
+      });
+    });
+  });
+
+  describe('#repeat', () => {
+    describe('when set to nothing', () => {
+      it('turns off repeat', () => {
+        playbackAPI.repeat(Repeat.OFF);
+        expect(playbackAPI.request).toBeCalledWith(
+          'https://api.spotify.com/v1/me/player/repeat?state=off',
+          null,
+          'PUT'
+        );
+      });
+    });
+
+    describe('when set to context', () => {
+      it('turns on context repeat', () => {
+        playbackAPI.repeat(Repeat.CONTEXT);
+        expect(playbackAPI.request).toBeCalledWith(
+          'https://api.spotify.com/v1/me/player/repeat?state=context',
+          null,
+          'PUT'
+        );
+      });
+    });
+
+    describe('when set to track', () => {
+      it('turns on track repeat', () => {
+        playbackAPI.repeat(Repeat.TRACK);
+        expect(playbackAPI.request).toBeCalledWith(
+          'https://api.spotify.com/v1/me/player/repeat?state=track',
           null,
           'PUT'
         );

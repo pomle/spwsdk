@@ -1,6 +1,12 @@
 import { albumURI, playlistURI, trackURI } from '../uri.js';
 import { CoreAPI } from './Core.js';
 
+export const Repeat = {
+  OFF: 'off',
+  CONTEXT: 'context',
+  TRACK: 'track',
+};
+
 export class PlaybackAPI extends CoreAPI {
 
   setDevice(deviceId) {
@@ -67,6 +73,10 @@ export class PlaybackAPI extends CoreAPI {
 
   prev() {
     return this.request(this.url('v1/me/player/previous'), null, 'POST');
+  }
+
+  repeat(state) {
+    return this.request(this.url('v1/me/player/repeat', [['state', state]]), null, 'PUT');
   }
 
   seek(ms) {

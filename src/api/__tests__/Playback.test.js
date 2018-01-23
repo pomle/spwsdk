@@ -129,4 +129,24 @@ describe('Playback API', () => {
       });
     });
   });
+
+
+  describe('#volume', () => {
+    describe('when given fraction between 0 and 1', () => {
+      [
+        [0, '0'],
+        [0.5234, '52'],
+        [1, '100'],
+      ].forEach(([arg, param]) => {
+        it(`sends ${param} for ${arg}`, () => {
+          playbackAPI.volume(arg);
+          expect(playbackAPI.request).toBeCalledWith(
+            `https://api.spotify.com/v1/me/player/volume?volume_percent=${param}`,
+            null,
+            'PUT'
+          );
+        });
+      });
+    });
+  });
 });

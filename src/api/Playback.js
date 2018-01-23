@@ -86,4 +86,9 @@ export class PlaybackAPI extends CoreAPI {
   shuffle(state) {
     return this.request(this.url('v1/me/player/shuffle', [['state', state]]), null, 'PUT');
   }
+
+  volume(fraction) {
+    const percent = (fraction * 100).toFixed();
+    return this.request(this.url('v1/me/player/volume', [['volume_percent', percent]]), null, 'PUT');
+  }
 }

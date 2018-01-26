@@ -27,7 +27,6 @@ const playerPromise = new Promise(resolve => {
   }
 
   window[waitFnName] = () => {
-    console.log(`${waitFnName} called`);
     resolve(window.Spotify);
   };
 });

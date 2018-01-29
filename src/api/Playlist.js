@@ -1,6 +1,11 @@
 import { trackURI } from '../uri.js';
 import { CoreAPI } from './Core.js';
 
+const DEFAULT_OPTIONS = {
+  offset: 0,
+  limit: 100,
+};
+
 export class PlaylistAPI extends CoreAPI {
   addTracks(userId, playlistId, trackIds, position = null) {
     const payload = {
@@ -28,9 +33,9 @@ export class PlaylistAPI extends CoreAPI {
     );
   }
 
-  getPlaylistTracks(userId, playlistId) {
+  getPlaylistTracks(userId, playlistId, options = DEFAULT_OPTIONS) {
     return this.request(
-      this.url(`v1/users/${userId}/playlists/${playlistId}/tracks`)
+      this.url(`v1/users/${userId}/playlists/${playlistId}/tracks`, Object.assign({}, DEFAULT_OPTIONS, options))
     );
   }
 

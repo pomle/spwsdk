@@ -40,23 +40,25 @@ describe('PlaylistAPI', () => {
         });
     });
 
-    describe('#getPlaylists()', () => {
-        it('queries logged in users playlists if userId omitted', () => {
+    describe('#getMyPlaylists', () => {
+        it('queries logged in users playlists', () => {
             const api = new PlaylistAPI();
             api.request = jest.fn().mockReturnValue(FAKE_RESULT);
-            expect(api.getPlaylists()).toBe(FAKE_RESULT);
+            expect(api.getMyPlaylists()).toBe(FAKE_RESULT);
             expect(api.request.mock.calls.length).toBe(1);
             expect(api.request).toBeCalledWith(
                 'https://api.spotify.com/v1/me/playlists');
         });
+    });
 
-        it('queries specific playlists if userId given', () => {
+    describe('#getPlaylists()', () => {
+        it('queries specific playlists for given userId', () => {
             const api = new PlaylistAPI();
             api.request = jest.fn().mockReturnValue(FAKE_RESULT);
             expect(api.getPlaylists('pomle')).toBe(FAKE_RESULT);
             expect(api.request.mock.calls.length).toBe(1);
             expect(api.request).toBeCalledWith(
-                'https://api.spotify.com/v1/pomle/playlists');
+                'https://api.spotify.com/v1/users/pomle/playlists');
         });
     });
 

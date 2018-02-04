@@ -18,8 +18,12 @@ export class PlaylistAPI extends CoreAPI {
     );
   }
 
-  getPlaylists(userId) {
-    return this.request(this.url(`v1/users/${userId}/playlists`));
+  getMyPlaylists(params = null) {
+    return this.request(this.url(`v1/me/playlists`, params));
+  }
+
+  getPlaylists(userId, params = null) {
+    return this.request(this.url(`v1/users/${userId}/playlists`, params));
   }
 
   getPlaylist(userId, playlistId, params = null) {
